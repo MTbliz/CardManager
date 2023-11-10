@@ -2,9 +2,10 @@ import numpy as np
 import pytesseract
 import cv2 as cv
 from matplotlib import pyplot as plt
-img = cv.imread('img_1.png')
+img = cv.imread('images/img_13.png')
 new_image= img.copy()
-img = 255 - img;
+# if background is light
+img = 255 - img
 assert img is not None, "file could not be read, check with os.path.exists()"
 imgray = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
 ret, thresh = cv.threshold(imgray, 127, 255, 0)
