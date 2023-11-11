@@ -3,10 +3,7 @@ import numpy as np
 import pytesseract
 import cv2
 
-class ReaderError(Exception):
-    """Meter reader generic exception"""
-
-img_path = "images/img_4.png"
+img_path = "images/img_10.jpg"
 
 # Load the input image and convert to RGB for correct display
 image = cv2.imread(img_path)
@@ -17,12 +14,14 @@ orig = image.copy()
 
 FIND_EDGES_IMAGE_HEIGHT = 1000
 
+
 def resize_image(img, new_height):
     """Resizes source image to provided max height maintaining aspect ratio"""
     (height, width) = img.shape[:2]
     ratio = new_height / float(height)
     dim = (int(width * ratio), new_height)
     return (cv2.resize(img, dim, interpolation=cv2.INTER_AREA), ratio)
+
 
 def get_edge_detection_thresholds(img):
     """Calculates the lower and upper thresholds for Canny edge detection"""
@@ -31,6 +30,7 @@ def get_edge_detection_thresholds(img):
     lower = int(max(0, (1.0 - sigma) * median))
     upper = int(min(255, (1.0 + sigma) * median))
     return (lower, upper)
+
 
 find_display_image = orig.copy()
 find_display_image = cv2.cvtColor(find_display_image, cv2.COLOR_RGB2GRAY)
@@ -63,9 +63,6 @@ for j, cnt in enumerate(new_contours):
         x, y, w, h = cv2.boundingRect(cnt)
         cropped = new_image[y:y + h, x:x + w]
         cv2.imwrite(f'cropped_{j}.jpg', cropped)
-
-
-
 
        # process text
         roi0 = cropped[20:100, 0::]

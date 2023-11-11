@@ -4,8 +4,6 @@ import numpy as np
 import pytesseract
 import cv2
 
-from nltk.corpus import words
-
 FIND_EDGES_IMAGE_HEIGHT = 1000
 
 def resize_image(img, new_height):
@@ -15,8 +13,8 @@ def resize_image(img, new_height):
     dim = (int(width * ratio), new_height)
     return (cv2.resize(img, dim, interpolation=cv2.INTER_AREA), ratio)
 
-image = cv2.imread("roi_0.jpg")
-roi1 = image[5:80, 10:-90]
+image = cv2.imread('sharp_466.jpg')
+roi1 = image
 roi0 = cv2.resize(roi1, None, fx=3, fy=3)
 # Define the sharpening kernel
 kernel = np.array([[0, -1, 0], [-1, 5,-1], [0, -1, 0]])
@@ -38,11 +36,8 @@ config = '--psm 8'
 text = pytesseract.image_to_string(er, config=config)
 print("Detected Number is:",text)
 text_words = text.split(' ')
-string_list = []
-for word in text_words:
-    if word.lower() in words.words() or len(word)>2:
-        string_list.append(word)
-final_text = ' '.join([str(elem) for elem in string_list])
+
+final_text = ' '.join([str(elem) for elem in text_words])
 print(final_text)
 
 

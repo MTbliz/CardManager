@@ -2,7 +2,7 @@ import numpy as np
 import pytesseract
 import cv2 as cv
 from matplotlib import pyplot as plt
-img = cv.imread('images/img_13.png')
+img = cv.imread('images/img_10.jpg')
 new_image= img.copy()
 # if background is light
 img = 255 - img
