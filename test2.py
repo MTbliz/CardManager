@@ -3,7 +3,7 @@ import numpy as np
 import pytesseract
 import cv2
 
-img_path = "images/img_10.jpg"
+img_path = "images/img_2.png"
 
 # Load the input image and convert to RGB for correct display
 image = cv2.imread(img_path)

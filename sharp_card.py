@@ -18,7 +18,7 @@ def get_edge_detection_thresholds(img):
     upper = int(min(255, (1.0 + sigma) * median))
     return (lower, upper)
 
-image = cv2.imread('cropped_0.jpg')
+image = cv2.imread('cropped_5.jpg')
 (resized_image, ratio) = resize_image(image, 2000)
 top_image = resized_image[:resized_image.shape[0]//5]
 new_image = top_image.copy()
